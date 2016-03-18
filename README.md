@@ -12,13 +12,13 @@ Let's get yourself familiar with Angular by revisiting two old friends: [Shoppin
 ## Task 1 - Shopping Cart
 
   1. Go to the folder `shopping-cart`
-  2. Run `bower instrall --save`
+  2. Run `bower install --save`
   3. Happy Coding!
 
 ## Task 2 - Ten-Seconds Math
 
   1. Go to the folder by `ten-seconds-math`
-  2. Run `bower instrall --save`
+  2. Run `bower install --save`
   3. Happy Coding!
 
 ## Rules
