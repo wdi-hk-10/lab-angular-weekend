@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ShoppingCart">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -14,34 +14,33 @@
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
   </head>
-  <body>
+  <body ng-controller="CartCtrl">
     <div id="main" class="container-fluid">
       <h1>Shopping Cart</h1>
 
       <section id="items-list" class="container-fluid">
-        <div class="row">
-          <div class="col-xs-4">Nothing</div>
-          <div class="col-xs-3">$0.0</div>
+        <div class="row" ng-repeat="(name, value) in lists">
+          <div class="col-xs-4">{{name | uppercase}}</div>
+          <div class="col-xs-3">{{value.price | currency}}</div>
           <div class="col-xs-3">
             <label>QTY</label>
-            <input class="quantity" value="0">
-            <button type="button" class="btn btn-default">Cancel</button>
+            <input class="quantity" value="0" ng-model="value.quantity">
           </div>
-          <div class="col-xs-2">$0.0</div>
+          <div class="col-xs-2">{{value.price * value.quantity | currency}}</div>
         </div>
       </section>
       <section id="new-item">
-        <div class="row">
+        <div class="row" ng-init="newItem={}">
           <div class="col-xs-4">
             <label>Item</label>
-            <input type="text">
+            <input type="text" ng-model="newItem.name">
           </div>
           <div class="col-xs-3">
             <label>Price</label>
-            <input type="text">
+            <input type="text" ng-model="newItem.price">
           </div>
           <div class="col-xs-3">
-            <button type="button" class="btn btn-primary">Create</button>
+            <button type="button" class="btn btn-primary" ng-click="addItem()">Create</button>
           </div>
         </div>
       </section>
@@ -53,7 +52,7 @@
             </button>
           </div>
         </div>
-        <h1>Total Price: $0.0</h1>
+        <h1>Total Price: {{totalPrice() | currency}}</h1>
       </section>
     </div>
   </body>
