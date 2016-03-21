@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="10SecondsMath">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -14,7 +14,7 @@
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
   </head>
-  <body>
+  <body ng-controller="ClockCtrl">
     <div class="container-fluid">
       <div class="row">
 
@@ -22,20 +22,25 @@
           <h2 class="text-center">10 Seconds Math Game</h2>
         </div>
 
-        <div id="gameover-box" class="well col-xs-12 col-sm-8 col-sm-offset-2">
+        <div id="gameover-box" class="well col-xs-12 col-sm-8 col-sm-offset-2" ng-show="gameover">
           <h1 class="text-center">Game Over</h1>
           <h3 class="text-center">You scored {{points}} Points</h3>
-          <button type="button" class="btn btn-primary center-block">Start again?</button>
+          <button type="button" class="btn btn-primary center-block" ng-click="init()">Start again?</button>
         </div>
 
-        <div id="answer-box" class="well col-xs-12 col-sm-8 col-sm-offset-2">
+        <div id="answer-box" class="well col-xs-12 col-sm-8 col-sm-offset-2" ng-hide="gameover">
           <p id="counter" class="text-center">
             {{secondsLeft}} Seconds Left
           </p>
           <p id="equation" class="text-center">
             {{num1}} + {{num2}}
           </p>
-          <input type="number" class="center-block" id="solution-input" placeholder="Your answer">
+          <input type="number"
+                 class="center-block"
+                 id="solution-input"
+                 placeholder="Your answer"
+                 ng-model="userInput"
+                 ng-change="evalAnswer()">
         </div>
 
       </div>
